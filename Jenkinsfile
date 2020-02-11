@@ -5,7 +5,8 @@ pipeline {
         stage('Upload to AWS') {            
             steps {
                 withAWS(credentials:'jenkins') {
-                    sh 'attempting to upload'                    
+                    sh 'attempting to upload'
+                    s3Upload(file:'index.html', bucket:'titan-jenkins', path:'index.html')
                 }
                 
                   sh 'echo "Hello World"'
