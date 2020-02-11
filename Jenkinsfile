@@ -3,8 +3,16 @@ pipeline {
 
     stages {
         stage('Upload to AWS') {
+            sh 'attempting to upload'
+            s3Upload profileName: 'example', entries [
+                [
+                    bucket              : 'titan-jenkins',
+                    selectedRegion      : 'eu-west-2',
+                    sourceFile          : 'index.html',
+                    managedArtifacts    : true,
+                ]
+            ]
             steps {
-                s3Upload(file:'index.html', bucket:'titan-jenkins', path:'index.html')
                   sh 'echo "Hello World"'
                   sh '''
                       echo "Multiline shell steps works too"
