@@ -2,12 +2,12 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
+        stage('Upload to AWS.') {
             steps {
                 withAWS(credentials:'jenkins') {
-                    echo 'Building..'
-                }
-                
+                    echo 'Uploading file'
+                    s3Upload(file:'index.txt', bucket:'titan-jenkins', path:'index.html')
+                }                
             }
         }        
     }
