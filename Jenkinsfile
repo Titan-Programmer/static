@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                withAWS(credentials:'jenkins') {
+                    echo 'Building..'
+                }
+                
             }
         }        
     }
